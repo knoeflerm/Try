@@ -1,0 +1,27 @@
+<div id="header" class="clearfix shadow">
+	<div id="sitetitle" class="clearfix">
+		<h1><a href="/home/index.html">Editing offer</a></h1>
+	</div>
+</div>
+	
+<div id="content" class="clearfix shadow">
+	<div id="sidebar" class="left">
+		<div class="inner">
+			<div id="nav" class="clearfix">
+				<ul>
+					<li>
+						<%= link_to 'Show', @offer %> 
+					</li>
+					<li>
+						<%= link_to 'Back', offers_path %>	
+					</li>
+				</ul>
+			</div>			
+		</div>
+	</div>
+	
+	<div id="main" class="right">
+		<%= render 'form' %>
+	</div>
+</div>
+

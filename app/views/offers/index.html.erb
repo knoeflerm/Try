@@ -1,0 +1,46 @@
+<div id="header" class="clearfix shadow">
+	<div id="sitetitle" class="clearfix">
+		<h1><a href="home/index.html">Offers List</a></h1>
+	</div>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<div id="content" class="clearfix shadow">
+	<div id="sidebar" class="left">
+		<div class="inner">
+			<div id="nav" class="clearfix">
+				<ul>
+					<li>
+						<%= link_to 'New Offer', new_offer_path %>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<table>
+	  <tr>
+	    <th>Title</th>
+	  </tr>
+	
+	<% @offers.each do |offer| %>
+	  <tr>
+	    <td><%= link_to offer.title, offer %></td>
+	    <td>
+		    <div id="nav" class="clearfix">
+				<ul>
+					<li>
+						<%= link_to 'Edit', edit_offer_path(offer) %>
+					</li>
+					<li>
+						<%= link_to 'Destroy', offer, confirm: 'Are you sure?', method: :delete %>
+					</li>
+				</ul>
+			</div>   	
+	    </td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+

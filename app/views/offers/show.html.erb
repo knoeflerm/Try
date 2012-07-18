@@ -1,0 +1,36 @@
+
+
+<div id="content" class="clearfix shadow">
+	<div id="sidebar" class="left">
+		<div class="inner">
+			<div id="nav" class="clearfix">
+				<ul>
+					<li>
+						<%= link_to 'Edit', edit_offer_path(@offer) %>
+					</li>
+					<li>
+						<%= link_to 'Back', offers_path %>	
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div id="main" class="right">
+		<p id="notice"><%= notice %></p>
+		<p>
+		  <b>Title:</b>
+		  <%= @offer.title %>
+		</p>
+		
+		<p>
+		  <b>Description:</b>
+		  <%= @offer.description %>
+		</p>
+		
+		<p>
+		  <b>Price:</b>
+		  <%= @offer.price %>
+		</p>
+	</div>
+</div>
