@@ -5,9 +5,19 @@ gem 'rails', '3.2.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'ruby-mysql'
-gem 'mysql'
-gem 'activerecord-postgresql-adapter'
+group :development, :test do
+  gem 'ruby-mysql'
+  gem 'mysql'
+  gem 'rspec-rails', '2.11.0'
+end
+
+group :production do
+  gem 'activerecord-postgresql-adapter'
+end
+
+group :test do
+  gem 'capybara', '1.1.2'
+end
 
 
 # Gems used only for assets and not required
