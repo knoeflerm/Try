@@ -1,0 +1,83 @@
+[33mcommit b34d91d04f86bf6e38d5a3df1f62b2c9d3764b60[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Mon Jul 30 12:13:17 2012 +0200
+
+    added about page
+
+[33mcommit 4f3ac73ccb2739abc1077edc0c9808c9beadb39b[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Mon Jul 30 12:11:57 2012 +0200
+
+    added static_pages/about and tested main functions
+
+[33mcommit 1943eecf0051b45f9686aca6cb10282fc9e8777e[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Fri Jul 20 10:42:27 2012 +0200
+
+    Add a StaticPages controller
+
+[33mcommit 31eece205600318c9ce1fe26f8194d8aa7564441[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Fri Jul 20 09:48:12 2012 +0200
+
+    added rspec structure and it seems that this file is used for smoething
+
+[33mcommit 7b4089b6224bc46980717ea8bae4c42f07e50a15[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Fri Jul 20 09:44:08 2012 +0200
+
+    added rspec structure to do testing with, well, rspec
+
+[33mcommit f634f575c7cef3fb2002c2844a360fe3c3a96c55[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Fri Jul 20 09:05:38 2012 +0200
+
+    added some gems and organized them into production and development/test groups
+
+[33mcommit 62b55fa65c88bc1ccc61ab2b4f5601233b03a22f[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Thu Jul 19 09:01:43 2012 +0200
+
+    removed gabi from slider
+
+[33mcommit 69ee3498e07c63ba2eb9f7d5634d1342b362acec[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Thu Jul 19 08:36:17 2012 +0200
+
+    set config.assets.compile to true to always compile things even in production mode. did it to make page run on Heroku.
+
+[33mcommit 40e5cedfee3e52dc496bf0dcbe747489cf0c0f61[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Wed Jul 18 15:58:36 2012 +0200
+
+    again added activerecord but now with ''
+
+[33mcommit 6e77c469525a9eebd7d38ee0cd304351ec8e771c[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Wed Jul 18 15:56:17 2012 +0200
+
+    removed activerecord postgresql
+
+[33mcommit 661cb99fe8b556330404b17e2d831db8cd615b3c[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Wed Jul 18 15:56:00 2012 +0200
+
+    removed activerecord postgresql
+
+[33mcommit 175e343594bfec418a44fb1005e78d6557644df7[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Wed Jul 18 15:48:03 2012 +0200
+
+    added postgre activerecord to gemfile
+
+[33mcommit 8b33a31e9d00a51e0d5d7f59751ed954be4c4fe0[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Wed Jul 18 12:03:35 2012 +0200
+
+    improve the readme file
+
+[33mcommit c03148a167ca136339fc978578d3de2c943a177c[m
+Author: Markus Knoefler <knoeflerm@gmail.com>
+Date:   Wed Jul 18 10:14:13 2012 +0200
+
+    Initial commit
