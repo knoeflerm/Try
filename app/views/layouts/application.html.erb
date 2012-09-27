@@ -1,44 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
-  <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "javascripts/application" %>
-  <%= javascript_include_tag "jquery-1.7.1.min" %>
-  <%= javascript_include_tag "jquery.nivo.slider" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<div id="wrapper960" class="clearfix">
-		<div id="toplinks">
-			<ul class="toplinks_links">
-				<li><a href="#">Login</a></li>
-			</ul>
-		</div>
-		<!--FIXME: consider using slim box-->
-		<div class="slider-wrapper">
-			<div id="slider" class="nivoSlider">
-				<%= image_tag("slider0.jpg") %>
-				<%= image_tag("slider1.jpg") %>
-				<%= image_tag("slider2.jpg") %>
-				<%= image_tag("slider3.jpg") %>
-				<%= image_tag("slider4.jpg") %>
-				<!--<%= image_tag("gabi667x500.jpg") %>-->
-			</div>
-		</div>
-		<%= yield %>
-		
-		<div id="footer" class="shadow">
-			<p>&copy; 2012 Markus Knoefler | <a href="http://andreasviklund.com/templates/inland/">Template design</a> by <a href="http://andreasviklund.com/">andreasviklund.com</a></p>
-		</div>
-	</div>
-	<script type="text/javascript">
-		$(window).load(function() {
-			$('#slider').nivoSlider({effect: 'fade'});
-		});
-	</script>
-</body>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= render 'layouts/stylesheets' %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <%= render 'layouts/header' %>
+      <section class="round">
+        <%= yield %>
+      </section>
+      <%= render 'layouts/footer' %>
+    </div>
+  </body>
 </html>
