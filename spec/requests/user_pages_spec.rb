@@ -27,6 +27,25 @@ describe "User pages" do
       it "should not create a user" do
         expect { click_button "Sign up" }.not_to change(User, :count)
       end
+      
+      describe "error messages" do
+        before { click_button "Sign up" }
+  
+        let(:error) { 'errors prohibited this user from being saved' }
+        let(:pwblank) { "Password can't be blank" }
+        let(:nameblank) { "Name can't be blank" }
+        let(:emailblank) { "Email can't be blank" }
+        let(:emailinvalid) { "Email is invalid" }
+        let(:pwtooshort) { "Password is too short (minimum is 2 characters)" }
+  
+        it { should have_selector('title', text: 'Sign up') }
+        it { should have_content(error) }
+        it { should have_content(pwblank) }
+        it { should have_content(nameblank) }
+        it { should have_content(emailblank) }
+        it { should have_content(emailinvalid) }
+        it { should have_content(pwtooshort) }
+      end
     end
 
     describe "with valid information" do
@@ -39,6 +58,14 @@ describe "User pages" do
 
       it "should create a user" do
         expect { click_button "Sign up" }.to change(User, :count).by(1)
+      end
+      
+      describe "after successfully saving the user" do
+        before { click_button "Sign up" }
+        let(:user) { User.find_by_email('user@example.com') }
+
+        it { should have_selector('title', text: user.name) }
+        it { should have_selector('div.flash.success', text: 'Welcome') }
       end
     end
   end
