@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      sign_in @user
       flash[:success] = "Welcome to the Sample App!"
       redirect_to User.last #this is a hack User.last should be @user but that one always have id 0
     else
