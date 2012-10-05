@@ -10,7 +10,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation # Always define accessible attributes in models. If not, every attr is accessible.
   has_secure_password
   before_save :create_remember_token
 
