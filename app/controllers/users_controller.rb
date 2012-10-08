@@ -12,17 +12,27 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if current_user.nil?
+      @user = User.new
+    else
+      flash[:notice] = "You already have an acoount"
+      redirect_to(root_path)
+    end
   end
   
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to User.last #this is a hack User.last should be @user but that one always have id 0
+    if current_user.nil?
+      @user = User.new(params[:user])
+      if @user.save
+        sign_in @user
+        flash[:success] = "Welcome to the Sample App!"
+        redirect_to User.last #this is a hack User.last should be @user but that one always have id 0
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      flash[:notice] = "You already have an acoount"
+      redirect_to(root_path)
     end
   end
   
@@ -40,8 +50,13 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User destroyed."
+    user = User.find(params[:id])
+    if current_user == user
+      flash[:notice] = "You cannot delete your self"
+    else
+      user.destroy
+      flash[:success] = "User destroyed."
+    end
     redirect_to users_path
   end
   
@@ -60,6 +75,6 @@ class UsersController < ApplicationController
     end
     
     def admin_user
-      redirect_to(root_path) unless current_user.admin?
+      redirect_to(root_path) unless !current_user.nil? && current_user.admin?
     end
 end
