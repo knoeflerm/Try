@@ -14,7 +14,7 @@ describe "User pages" do
     end
 
     it { should have_selector('title', text: 'All users') }
-
+    
     describe "pagination" do
       #before(:all) { 30.times { FactoryGirl.create(:user) } }
       before(:all) do

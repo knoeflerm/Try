@@ -18,9 +18,10 @@ describe "Static pages" do
     
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+      let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum") }
+      let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet") }
+      
       before do
-        FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
-        FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
         sign_in user
         visit root_path
       end
@@ -28,6 +29,17 @@ describe "Static pages" do
       it "should render the user's feed" do
         user.feed.each do |item|
           page.should have_selector("tr##{item.id}", text: item.content) # The first # in tr## is Capybara syntax. The second is the beginning of Ruby string interpolation #{}
+        end
+      end
+      
+      describe "microposts" do
+        it "should display the correct pluralized microposts count" do
+          page.should have_content("2 microposts")
+        end
+        
+        it "should delete a micropost and display the correct singular count" do
+          expect { click_link "delete" }.should change(Micropost, :count).by(-1)
+          page.should have_content("1 micropost")
         end
       end
     end
