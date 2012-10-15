@@ -38,7 +38,7 @@ describe "Static pages" do
         end
         
         it "should delete a micropost and display the correct singular count" do
-          expect { click_link "delete" }.should change(Micropost, :count).by(-1)
+          expect { click_link "delete" }.to change(Micropost, :count).by(-1)
           page.should have_content("1 micropost")
         end
       end
