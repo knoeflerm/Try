@@ -10,7 +10,6 @@ describe "Micropost pages" do
       sign_in user
       visit root_path
     end
-  
     before(:all) do
       (1..31).each do |i|
           FactoryGirl.create(:micropost, user: user, content: "#{i} Lorem ipsum")
@@ -18,19 +17,15 @@ describe "Micropost pages" do
     end
     after(:all)  { Micropost.delete_all }
     after(:all) { User.delete_all }
-    
     it { should have_link('Next') }
     it { should have_link('2') }
     let(:first_page)  { Micropost.paginate(page: 1) }
     let(:second_page) { Micropost.paginate(page: 2) }
-    
-
     it "should list the first page of the user's microposts" do
       first_page.each do |post|
         page.should have_selector("tr##{post.id}", text: post.content)
       end
     end
-
   end
   
   describe "general" do
