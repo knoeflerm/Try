@@ -32,6 +32,17 @@ describe "Static pages" do
         end
       end
       
+      describe "follower/following counts" do
+        let(:other_user) { FactoryGirl.create(:user) }
+        before do
+          other_user.follow!(user)
+          visit root_path
+        end
+
+        it { should have_link("0 following", href: following_user_path(user)) }
+        it { should have_link("1 follower",  href: followers_user_path(user)) }
+      end
+      
       describe "microposts" do
         it "should display the correct pluralized microposts count" do
           page.should have_content("2 microposts")
@@ -43,6 +54,7 @@ describe "Static pages" do
         end
       end
     end
+    
   end
   
   describe "Help page" do
