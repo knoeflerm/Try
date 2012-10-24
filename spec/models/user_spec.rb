@@ -197,4 +197,38 @@ describe User do
       its(:followed_users) { should_not include(other_user) }
     end
   end
+  
+  describe "destroy" do
+    let(:another_follower) { FactoryGirl.create(:user) } # The another_follower is following the follower
+    let(:followed) { FactoryGirl.create(:user) }
+    before do
+      @user.save
+      @user.follow!(followed)
+      another_follower.save
+      another_follower.follow!(@user)
+    end
+    it { should be_following(followed) }
+    its(:followers) { should include(another_follower) }
+  
+    describe "another_follower should not be following the @user anymore" do
+      before do
+        @user.destroy
+        subject { another_follower }        
+      end
+      it { should_not be_following(@user) }
+    end
+    
+    describe "followed should not be following the @user anymore" do
+      before do
+        subject { followed }        
+      end
+      it { should_not be_following(@user) }
+    end
+  end
+  
+  
+  
+  
+  
+  
 end
