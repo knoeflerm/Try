@@ -13,4 +13,13 @@ FactoryGirl.define do
     content "Lorem ipsum"
     user
   end
+  
+  factory :address do
+    name "Lastname"
+    surname "surname"
+    street "street"
+    streetnumber 6
+    town "town"
+    link "link"
+  end
 end
