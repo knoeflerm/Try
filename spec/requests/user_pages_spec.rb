@@ -15,6 +15,15 @@ describe "User pages" do
 
     it { should have_selector('title', text: 'All users') }
     
+    describe "as a non admin user" do
+      let(:nonadminuser) { FactoryGirl.create(:user) }
+      before do
+        sign_in nonadminuser
+        visit users_path
+      end
+      it { should have_link('delete', href: user_path(nonadminuser)) }
+    end
+      
     describe "pagination" do
       #before(:all) { 30.times { FactoryGirl.create(:user) } }
       before(:all) do
@@ -49,7 +58,7 @@ describe "User pages" do
           page.should have_selector('li', text: user.name)
         end
       end
-
+      
       describe "as an admin user" do
         let(:admin) { FactoryGirl.create(:admin, id: '123') } #FIXME: id: '123' is to fake the unsuccessful test
         before do
@@ -240,9 +249,7 @@ describe "User pages" do
         sign_in user
         visit following_user_path(user)
       end
-
-      it { should have_selector('a', href: user_path(other_user),
-                                     text: other_user.name) }
+      it { should have_selector('a', href: user_path(other_user), text: other_user.name) }
     end
 
     describe "followers" do
@@ -250,9 +257,7 @@ describe "User pages" do
         sign_in other_user
         visit followers_user_path(other_user)
       end
-
-      it { should have_selector('a', href: user_path(user),
-                                     text: user.name) }
+      it { should have_selector('a', href: user_path(user), text: user.name) }
     end
   end
 end
