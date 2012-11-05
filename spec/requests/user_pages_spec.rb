@@ -22,6 +22,7 @@ describe "User pages" do
         visit users_path
       end
       it { should have_link('delete', href: user_path(nonadminuser)) }
+      it { should_not have_link('delete', href: user_path(user)) }
     end
       
     describe "pagination" do
@@ -37,9 +38,6 @@ describe "User pages" do
       it { should have_link('2') }
       let(:first_page)  { User.paginate(page: 1) }
       let(:second_page) { User.paginate(page: 2) }
-
-      #FIXME: fix this test
-      #it { should_not have_link('delete') }
 
       it "should list the first page of users" do
         first_page.each do |user|

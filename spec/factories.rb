@@ -15,11 +15,13 @@ FactoryGirl.define do
   end
   
   factory :address do
+    user
     name "Lastname"
     surname "surname"
     street "street"
     streetnumber 6
+    zipcode 1000
     town "town"
-    link "link"
+    link "http://www.example.com"
   end
 end

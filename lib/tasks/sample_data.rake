@@ -5,6 +5,7 @@ namespace :db do
     make_users
     make_microposts
     make_relationships
+    make_addresses
   end
 end
 
@@ -40,4 +41,20 @@ def make_relationships
   followers      = users[3..40]
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
+end
+
+def make_addresses
+  users = User.all
+  i = 0
+  users.each do |user|
+    i += 1
+    name = "Name" + i.to_s
+    surname = "Surname" + i.to_s
+    street = "street" + i.to_s
+    streetnumber = i
+    zipcode = 1000 + i
+    town = "Town" + i.to_s
+    link = "http://www.example#{i.to_s}.com"
+    user.addresses.create!(name: name, surname: surname, street: street, streetnumber: streetnumber, zipcode: zipcode, town: town, link: link)
+  end 
 end
