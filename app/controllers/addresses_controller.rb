@@ -19,6 +19,19 @@ class AddressesController < ApplicationController
     render 'index'
   end
   
+  def destroy
+    address = Address.find(params[:id])
+    if address.user_id == current_user.id || current_user.admin?
+      address.destroy
+      flash[:success] = "Address destroyed"
+      redirect_to address_path(current_user)
+    else
+      flash[:error] = "Prohibited to delete this address"
+      redirect_to(root_path)
+    end
+    
+  end
+  
   def new
   end
 end
