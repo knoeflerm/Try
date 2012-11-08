@@ -42,11 +42,16 @@ describe "User pages" do
       it "should list the first page of users" do
         first_page.each do |user|
           page.should have_selector('li', text: user.name)
+          pp user.name
         end
+        pp 'count: ' + User.count.to_s
+        pp 'firstpage: ' + User.paginate(page: 1).count.to_s
+        pp 'secondpage: ' + User.paginate(page: 2).count.to_s
       end
 
       it "should not list the second page of users" do
         second_page.each do |user|
+          pp user.name
           page.should_not have_selector('li', text: user.name)
         end
       end

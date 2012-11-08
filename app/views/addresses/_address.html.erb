@@ -1,0 +1,7 @@
+<li>
+  <%= link_to address.name, address %>
+
+	<% if (current_user != nil) %>
+    | <%= link_to "delete", address, method: :delete, confirm: "You sure?" %>
+  	<% end %>
+</li>
