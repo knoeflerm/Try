@@ -123,6 +123,11 @@ describe "Authentication" do
           before { visit users_path }
           it { should have_selector('title', text: 'Sign in') }
         end
+        
+        describe "visiting the user" do
+          before { visit user_path(user) }
+          it { should have_selector('title', text: 'Sign in') }
+        end
                 
         describe "visiting the following page" do
           before { visit following_user_path(user) }

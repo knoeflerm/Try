@@ -1,5 +1,5 @@
 <li>
-  	<%= link_to address.name, edit_address_path(address) %>
+  	<%= link_to address.name << ', ' << address.street << ', ' << address.town, edit_address_path(address) %>
 	<% if (current_user != nil) %>
     | <%= link_to "delete", address, method: :delete, confirm: "You sure?" %>
   	<% end %>
