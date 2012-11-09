@@ -10,5 +10,6 @@
 
 <div>
   <%= gravatar_for(@user) %>
-  <%= link_to "change", "http://gravatar.com/emails", :target => "_blank" %>
+  <%= link_to "change", "http://gravatar.com/emails", :target => "_blank" %><br/>
+  <%= link_to new_address_path, new_address_path %>
 </div>

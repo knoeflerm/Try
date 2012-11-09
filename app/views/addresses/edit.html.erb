@@ -1,0 +1,9 @@
+<% provide :title, "Edit address" %> 
+<h1>Edit address</h1>
+
+<%= form_for(@address) do |f| %>
+  <%= render 'fields', f: f %>
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

@@ -80,4 +80,31 @@ describe "Address pages" do
       end
     end
   end
+  
+  describe "new" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:address) { FactoryGirl.create(:address, user: user) }
+    before do
+      sign_in user
+      visit new_address_path(address)
+    end
+
+    describe "page" do
+      it { should have_selector('h1',    text: "New address") }
+      it { should have_selector('title', text: "New address") }
+    end
+  end
+  
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:address) { FactoryGirl.create(:address, user: user) }
+    before do
+      sign_in user
+      visit edit_address_path(address)
+    end
+    describe "page" do
+      it { should have_selector('h1',    text: "Edit address") }
+      it { should have_selector('title', text: "Edit address") }
+    end
+  end
 end

@@ -8,6 +8,13 @@ class AddressesController < ApplicationController
   end
   
   def show
+  end
+  
+  def edit
+    @address = Address.find(params[:id])
+  end
+  
+  def show
     user = User.find(params[:id])
     if user.admin?
       @title = "All addresses"
@@ -33,5 +40,6 @@ class AddressesController < ApplicationController
   end
   
   def new
+    @address = Address.new
   end
 end
