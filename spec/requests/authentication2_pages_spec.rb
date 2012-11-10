@@ -36,4 +36,14 @@ describe "Authorization" do
       end      
     end
   end
+  
+  describe "for signed-in users" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:user2) { FactoryGirl.create(:user) }
+    before { sign_in user }
+    describe "visit other user's address" do
+      before { visit address_path(user2) }
+      it { should have_selector('title', text: 'Home') }
+    end
+  end
 end

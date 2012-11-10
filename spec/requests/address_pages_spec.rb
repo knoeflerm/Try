@@ -9,7 +9,7 @@ describe "Address pages" do
       sign_in user
       visit address_path(user)
     end
-    it { should have_selector('title', text: 'Your addresses') }
+    it { should have_selector('title', text: user.name << " 's addresses") }
     
     describe "as non admin user" do
       let!(:address) { FactoryGirl.create(:address, user: user) }
@@ -148,7 +148,7 @@ describe "Address pages" do
           before { click_button "Save" }
           let(:newaddress) { Address.find_by_user_id(user.id) }
   
-          it { should have_selector('title', text: 'Your addresses') }
+          it { should have_selector('title', text: user.name << " 's addresses") }
           it { should have_selector('div.flash.success', text: 'Address saved') }
           it { should have_content(newaddress.name) }
           it { should have_link("#{newaddress.name}, #{newaddress.street}, #{newaddress.town}", href: edit_address_path(newaddress)) }
@@ -202,7 +202,7 @@ describe "Address pages" do
   
         let(:editedaddress) { Address.find_by_user_id(user.id) }
         
-        it { should have_selector('title', text: "Your addresses") }
+        it { should have_selector('title', text: user.name << " 's addresses") }
         it { should have_selector('div.flash.success', text: 'Address updated') }
         it { should have_link("#{name}, #{street}, #{town}", href: edit_address_path(editedaddress)) }
         specify { address.reload.name.should  == name }

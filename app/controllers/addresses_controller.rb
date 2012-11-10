@@ -24,12 +24,16 @@ class AddressesController < ApplicationController
   def show
     begin
       user = User.find(params[:id])
-      if user.admin?
+      currentuser = current_user
+      if currentuser.admin? && currentuser == user
         @title = "All addresses"
         @addresses = Address.paginate(page: params[:page])
+      elsif !currentuser.admin? && currentuser == user
+        @title = user.name << " 's addresses"
+        @addresses = user.addresses.paginate(page: params[:page])  
       else
-        @title = "Your addresses"
-        @addresses = user.addresses.paginate(page: params[:page])
+        redirect_to(root_path)
+        return      
       end
       render 'index'
     rescue ActiveRecord::RecordNotFound => e
@@ -48,7 +52,6 @@ class AddressesController < ApplicationController
       flash[:error] = "Prohibited to delete this address"
       redirect_to(root_path)
     end
-    
   end
   
   def new
@@ -74,6 +77,6 @@ class AddressesController < ApplicationController
     rescue ActiveRecord::RecordNotFound => e
       @address = nil
     end
-    redirect_to(root_path) unless !@address.nil? && @address.user_id == current_user.id
+    redirect_to(root_path) unless !@address.nil? && @address.user_id == current_user.id || current_user.admin?
   end
 end
