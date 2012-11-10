@@ -1,0 +1,9 @@
+<% provide(:title, 'New address') %>
+<h1>New address</h1>
+
+<%= form_for(@address) do |f| %>
+  <%= render 'fields', f: f %>
+  <div class="actions">
+    <%= f.submit "Save" %>
+  </div>
+<% end %>

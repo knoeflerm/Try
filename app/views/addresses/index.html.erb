@@ -1,0 +1,10 @@
+<% provide :title, @title %>
+<h1><%= @title %></h1>
+
+<%= will_paginate %>
+
+<ul class="addresses">
+  <%= render @addresses %> <!-- This iterates over @addresses and renders partial _address.html.erb -->
+</ul>
+
+<%= will_paginate %>

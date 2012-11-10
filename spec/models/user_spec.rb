@@ -129,6 +129,20 @@ describe User do
     it { should be_admin }
   end
   
+  describe "address associations" do
+    before { @user.save }
+    let!(:address) do
+      FactoryGirl.create(:address, user: @user)
+    end
+    it "should destroy associated addresses" do
+      addresses = @user.addresses
+      @user.destroy
+      addresses.each do |address|
+        Address.find_by_id(address.id).should be_nil
+      end
+    end
+  end
+  
   describe "micropost associations" do
 
     before { @user.save }

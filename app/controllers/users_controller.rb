@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :show, :update, :following, :followers]
+  before_filter :signed_in_user, only: [:index, :show, :edit, :update, :following, :followers]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy
   
@@ -10,6 +10,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    if @user.admin?
+      @addresses_count = Address.count
+    else
+      @addresses_count = @user.addresses.count
+    end
   end
 
   def new
@@ -80,9 +85,5 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
-    end
-    
-    def admin_user
-      redirect_to(root_path) unless !current_user.nil? && current_user.admin?
     end
 end
