@@ -29,7 +29,11 @@ class AddressesController < ApplicationController
         @title = "All addresses"
         @addresses = Address.paginate(page: params[:page])
       elsif !currentuser.admin? && currentuser == user
-        @title = user.name << " 's addresses"
+        if user.addresses.count > 1
+          @title = user.name << "'s " << pluralize("address") 
+        else
+          @title = user.name << "'s address"
+        end      
         @addresses = user.addresses.paginate(page: params[:page])  
       else
         redirect_to(root_path)
@@ -78,5 +82,9 @@ class AddressesController < ApplicationController
       @address = nil
     end
     redirect_to(root_path) unless !@address.nil? && @address.user_id == current_user.id || current_user.admin?
+  end
+  
+  def pluralize(word)
+    ActiveSupport::Inflector.pluralize(word)
   end
 end
