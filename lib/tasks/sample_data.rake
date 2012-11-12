@@ -55,6 +55,8 @@ def make_addresses
     zipcode = 1000 + i
     town = "Town" + i.to_s
     link = "http://www.example#{i.to_s}.com"
-    user.addresses.create!(name: name, surname: surname, street: street, streetnumber: streetnumber, zipcode: zipcode, town: town, link: link)
+    phone = '+4171'  << i << i << i << i << i << i << i
+    mobile = '+4178' << i << i << i << i << i << i << i 
+    user.addresses.create!(name: name, surname: surname, street: street, streetnumber: streetnumber, zipcode: zipcode, town: town, link: link, phone: phone, mobile: mobile)
   end 
 end

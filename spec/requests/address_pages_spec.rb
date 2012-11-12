@@ -9,13 +9,21 @@ describe "Address pages" do
       sign_in user
       visit address_path(user)
     end
-    it { should have_selector('title', text: user.name << " 's addresses") }
-    
     describe "as non admin user" do
+      describe "singular" do
+        before { visit address_path(user) }
+        it { should have_selector('title', text: user.name << "'s address") }   
+      end
+      describe "plural" do
+        let!(:address1) { FactoryGirl.create(:address, user: user) }
+        let!(:address2) { FactoryGirl.create(:address, user: user) }
+        before { visit address_path(user) }
+        it { should have_selector('title', text: user.name << "'s addresses") }
+      end
       let!(:address) { FactoryGirl.create(:address, user: user) }
       before { visit user_path(user) }
       it { should have_content("Addresses #{user.addresses.count}") }
-      it { should have_link('Addresses', href: address_path(user)) }
+      it { should have_link('Addresses', href: address_path(user)) } 
     end
     
     describe "as admin user" do
@@ -148,7 +156,7 @@ describe "Address pages" do
           before { click_button "Save" }
           let(:newaddress) { Address.find_by_user_id(user.id) }
   
-          it { should have_selector('title', text: user.name << " 's addresses") }
+          it { should have_selector('title', text: user.name << "'s address") }
           it { should have_selector('div.flash.success', text: 'Address saved') }
           it { should have_content(newaddress.name) }
           it { should have_link("#{newaddress.name}, #{newaddress.street}, #{newaddress.town}", href: edit_address_path(newaddress)) }
@@ -202,7 +210,7 @@ describe "Address pages" do
   
         let(:editedaddress) { Address.find_by_user_id(user.id) }
         
-        it { should have_selector('title', text: user.name << " 's addresses") }
+        it { should have_selector('title', text: user.name << "'s address") }
         it { should have_selector('div.flash.success', text: 'Address updated') }
         it { should have_link("#{name}, #{street}, #{town}", href: edit_address_path(editedaddress)) }
         specify { address.reload.name.should  == name }

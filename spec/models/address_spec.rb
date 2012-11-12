@@ -15,6 +15,8 @@ describe Address do
   it { should respond_to(:zipcode) }
   it { should respond_to(:town) }
   it { should respond_to(:link) }
+  it { should respond_to(:phone) }
+  it { should respond_to(:mobile) }
   
   it { should be_valid }
   
@@ -48,6 +50,14 @@ describe Address do
   end
   describe "when link is not valid" do
     before { @address.link = "hallo.ch" }
+    it { should_not be_valid }
+  end
+  describe "when phone is not valid" do
+    before { @address.phone = "+123456789111" }
+    it { should_not be_valid }
+  end
+  describe "when mobile is not valid" do
+    before { @address.mobile = "+123456789111" }
     it { should_not be_valid }
   end
 end
