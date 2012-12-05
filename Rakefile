@@ -5,3 +5,8 @@
 require File.expand_path('../config/application', __FILE__)
 
 Try::Application.load_tasks
+
+desc "Run Tests"
+RSpec::Core::RakeTask.new(:test) do |t|
+  t.pattern = 'spec/*'
+end
