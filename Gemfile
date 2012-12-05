@@ -8,6 +8,8 @@ gem 'will_paginate', '3.0.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'pg-0.14.1-x86-mingw32'
+
 group :development, :test do
   gem 'ruby-mysql'
   gem 'mysql'
