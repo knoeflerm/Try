@@ -5,7 +5,7 @@ class AddressesController < ApplicationController
   
   def index
     @addresses = Address.paginate(page: params[:page])
-    @title = "addresses"
+    @title = "All addresses"
   end
   
   def edit
