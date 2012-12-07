@@ -4,13 +4,14 @@ gem 'rails', '3.2.1'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
-gem 'mysql'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
   gem 'ruby-mysql'
+  gem 'mysql'
+  gem 'activerecord-mysql-adapter'
   gem 'rspec-rails', '2.12.0'
   gem 'annotate', '~> 2.4.1.beta'
 end
