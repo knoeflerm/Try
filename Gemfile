@@ -11,7 +11,6 @@ gem 'will_paginate', '3.0.3'
 group :development, :test do
   gem 'ruby-mysql'
   gem 'mysql'
-  gem 'activerecord-mysql-adapter'
   gem 'rspec-rails', '2.12.0'
   gem 'annotate', '~> 2.4.1.beta'
 end
