@@ -1,0 +1,21 @@
+<% provide :title, 'Contact' %>
+<h1>Contact</h1>
+
+<div class="contact">
+	<p class="contact">
+		<% if !@contact.nil? %> 
+			<%= @contact.name << ' ' << @contact.surname %> <br />
+			<%= @contact.street << ' ' << @contact.streetnumber.to_s %> <br />
+			<%= @contact.zipcode.to_s << ' ' << @contact.town %> <br />
+		<% end %> 
+	</p>
+	<map>
+		<% if !@contact.nil? %>
+			<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src=<% @contact.link %>></iframe>
+		<% end %>
+		<br />
+		<small>
+			<a href="https://maps.google.ch/maps?q=Sagl+da+l'aua+5,+Lenzerheide&amp;hl=en&amp;ie=UTF8&amp;sll=46.727756,9.565473&amp;sspn=0.011973,0.014055&amp;t=h&amp;num=10&amp;hnear=Sagl+da+l'aua+5,+Lenzerheide,+7078+Graub%C3%BCnden&amp;hq=&amp;ll=46.731007,9.563899&amp;spn=0.010295,0.018239&amp;z=15&amp;iwloc=A&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a>
+		</small>
+ 	</map>
+</div>
