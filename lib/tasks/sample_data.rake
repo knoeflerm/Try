@@ -14,7 +14,7 @@ def make_users
                        email:    "markuk@domain.country",
                        password: "mk",
                        password_confirmation: "mk")
-  admin.toggle!(:admin) #FIXME: does not work for some reason
+  admin.toggle!(:admin)
   99.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
