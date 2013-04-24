@@ -12,13 +12,13 @@ describe "Address pages" do
     describe "as non admin user" do
       describe "singular" do
         before { visit address_path(user) }
-        it { should have_selector('title', text: user.name << "&#x27;s address") } #FIXME: had to switch from ' to &#x27; after rails upgrade from 3.2.1 to 3.2.13
+        it { should have_selector('title', text: user.name << "&#x27;s address") } #FIXME: had to switch from ' to &#x27; after rails upgrade from 3.2.1 to 3.2.13. Make contacts.show view dynamic when this issue is fixed on raisl side.
       end
       describe "plural" do
         let!(:address1) { FactoryGirl.create(:address, user: user) }
         let!(:address2) { FactoryGirl.create(:address, user: user) }
         before { visit address_path(user) }
-        it { should have_selector('title', text: user.name << "&#x27;s addresses") } #FIXME: had to switch from ' to &#x27; after rails upgrade from 3.2.1 to 3.2.13
+        it { should have_selector('title', text: user.name << "&#x27;s addresses") } #FIXME: had to switch from ' to &#x27; after rails upgrade from 3.2.1 to 3.2.13. Make contacts.show view dynamic when this issue is fixed on raisl side.
       end
       let!(:address) { FactoryGirl.create(:address, user: user) }
       before { visit user_path(user) }
@@ -156,7 +156,7 @@ describe "Address pages" do
           before { click_button "Save" }
           let(:newaddress) { Address.find_by_user_id(user.id) }
   
-          it { should have_selector('title', text: user.name << "&#x27;s address") } #FIXME: had to switch from ' to &#x27; after rails upgrade from 3.2.1 to 3.2.13
+          it { should have_selector('title', text: user.name << "&#x27;s address") } #FIXME: had to switch from ' to &#x27; after rails upgrade from 3.2.1 to 3.2.13. Make contacts.show view dynamic when this issue is fixed on raisl side.
           it { should have_selector('div.flash.success', text: 'Address saved') }
           it { should have_content(newaddress.name) }
           it { should have_link("#{newaddress.name}, #{newaddress.street}, #{newaddress.town}", href: edit_address_path(newaddress)) }
@@ -210,7 +210,7 @@ describe "Address pages" do
   
         let(:editedaddress) { Address.find_by_user_id(user.id) }
         
-        it { should have_selector('title', text: user.name << "&#x27;s address") } #FIXME: had to switch from ' to &#x27; after rails upgrade from 3.2.1 to 3.2.13
+        it { should have_selector('title', text: user.name << "&#x27;s address") } #FIXME: had to switch from ' to &#x27; after rails upgrade from 3.2.1 to 3.2.13. Make contacts.show view dynamic when this issue is fixed on raisl side.
         it { should have_selector('div.flash.success', text: 'Address updated') }
         it { should have_link("#{name}, #{street}, #{town}", href: edit_address_path(editedaddress)) }
         specify { address.reload.name.should  == name }
